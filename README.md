@@ -1,4 +1,4 @@
-This page will contain notes I took while working with [snmp4j](http://www.snmp4j.com/) library and implementing SNMP trap emitter and trap listener with the SNMP v3 support.  
+This page contains notes I took while working with [snmp4j](http://www.snmp4j.com/) library and implementing SNMP trap emitter and trap listener with the SNMP v3 support.  
 
 ## Links  
 
