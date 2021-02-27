@@ -4,7 +4,40 @@ This page will contain notes I took while working with snmp4j library and implem
 
 Per [rfc 2579](https://tools.ietf.org/html/rfc2579) DateAndTime data type is represented as Octet String  
 
-![image](https://user-images.githubusercontent.com/37493923/109395075-12555b00-78f0-11eb-8737-58ce0dca7b70.png)
+```
+DateAndTime ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "2d-1d-1d,1d:1d:1d.1d,1a1d:1d"
+    STATUS       current
+    DESCRIPTION
+            "A date-time specification.
+
+            field  octets  contents                  range
+            -----  ------  --------                  -----
+              1      1-2   year*                     0..65536
+              2       3    month                     1..12
+              3       4    day                       1..31
+              4       5    hour                      0..23
+              5       6    minutes                   0..59
+              6       7    seconds                   0..60
+                           (use 60 for leap-second)
+              7       8    deci-seconds              0..9
+              8       9    direction from UTC        '+' / '-'
+              9      10    hours from UTC*           0..13
+             10      11    minutes from UTC          0..59
+
+            * Notes:
+            - the value of year is in network-byte order
+            - daylight saving time in New Zealand is +13
+
+            For example, Tuesday May 26, 1992 at 1:30:15 PM EDT would be
+            displayed as:
+
+                             1992-5-26,13:30:15.0,-4:0
+
+            Note that if only local time is known, then timezone
+            information (fields 8-10) is not present."
+    SYNTAX       OCTET STRING (SIZE (8 | 11))
+```  
 
 Below method will convert human readable Date And Time String to HEX Octet String that can be used when building SNMP traps.  
 
@@ -27,7 +60,8 @@ Below method will convert human readable Date And Time String to HEX Octet Strin
             String hexoffset = Integer.toHexString(m.group(8).toCharArray()[0]);
             String houroffset=String.format("%02x",Integer.parseInt(m.group(9)));
             String minuteoffset=String.format("%02x",Integer.parseInt(m.group(10)));
-            DateAndTimeInHEX = year + month + day + hour + minute + second + millisecond + hexoffset + houroffset + minuteoffset;
+            DateAndTimeInHEX = year + month + day + hour + minute + second + 
+            millisecond + hexoffset + houroffset + minuteoffset;
         }
         else {
             throw new RuntimeException("Date And Time is not properly formatted");
