@@ -1,4 +1,13 @@
-This page will contain notes I took while working with snmp4j library and implementing SNMP trap emitter and trap listener with the SNMP v3 support.  
+This page will contain notes I took while working with [snmp4j](http://www.snmp4j.com/) library and implementing SNMP trap emitter and trap listener with the SNMP v3 support.  
+
+## Links  
+
+- [SNMP4J Main page](http://www.snmp4j.com/)  
+- [SNMP4J Downloads, License, API Doc, FAQ, Forum links](https://agentpp.com/api/java/snmp4j.html)  
+- [Download SNMP4J](https://agentpp.com/download.html#SNMP4J)  
+- [Java API: Package org.snmp4j documentation. Has some useful examples.](https://agentpp.com/doc/snmp4j/org/snmp4j/package-summary.html)  
+- [Java API: Package org.snmp4j.security. Needed for implementing v3.](https://agentpp.com/doc/snmp4j/org/snmp4j/security/package-summary.html)
+- [Java API: Package org.snmp4j.smi. SMI Data Types](https://agentpp.com/doc/snmp4j/org/snmp4j/smi/package-summary.html)
 
 ## Converting Date and Time to DateAndTime Octet String  
 
